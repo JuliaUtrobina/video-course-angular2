@@ -17,8 +17,14 @@ export class EventService {
     getEvent(id:number):IEvent {
         return EVENTS.find(event=>event.id === id);
     }
+
+    saveEvent(event) {
+        event.id = 999;
+        event.session = [];
+        EVENTS.push(event);
+    }
 }
-const EVENTS :IEvent[]= [
+const EVENTS:IEvent[] = [
     {
         id: 1,
         name: 'Angular Connect',
@@ -104,7 +110,7 @@ const EVENTS :IEvent[]= [
         time: '9:00 am',
         price: 950.00,
         imageUrl: '/app/assets/images/ng-nl.png',
-        onlineUrl:'http://ng-nl.org/',
+        onlineUrl: 'http://ng-nl.org/',
         sessions: [
             {
                 id: 1,
