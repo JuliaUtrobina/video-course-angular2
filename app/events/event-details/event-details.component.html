@@ -15,10 +15,27 @@
         </div>
         <div class="col-md-6">
             <address>
-                <strong>Address:</strong><br />
-                {{event?.location?.address}}<br />
+                <strong>Address:</strong><br/>
+                {{event?.location?.address}}<br/>
                 {{event?.location?.city}}, {{event?.location?.country}}
             </address>
         </div>
     </div>
+
+    <hr>
+
+    <!--Button for adding session-->
+    <div class="row">
+        <div class="col-md-2">
+            <h3 style="margin: 0">Sessions</h3>
+        </div>
+        <div class="col-md-2">
+            <a (click)="addSession()">Add Session</a>
+        </div>
+    </div>
+
+    <!--Sessions list component-->
+    <session-list *ngIf="!addMode" [sessions]="event?.sessions"></session-list>
+    <!--(saveNewSession) - emitted event-->
+    <create-session *ngIf="addMode" (saveNewSession)="saveNewSession($event)" (cancelAddSession)="cancelAddSession()"></create-session>
 </div>

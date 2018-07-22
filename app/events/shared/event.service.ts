@@ -23,6 +23,12 @@ export class EventService {
         event.session = [];
         EVENTS.push(event);
     }
+
+    updateEvent(event) {
+        // Find passed event in array to replace
+        let index = EVENTS.findIndex(x=>x.id == event.id);
+        EVENTS[index] = event;
+    }
 }
 const EVENTS:IEvent[] = [
     {
