@@ -18,20 +18,23 @@ import {
 
 import {EventsAppComponent} from "./events-app.components";
 import {NavBarComponent} from  "./nav/navbar.component";
-import {ToastrService} from "./common/toastr.service"
+import {TOASTR_TOKEN, Toastr} from "./common/toastr.service"
 import {CollapsibleWellComponent} from "./common/collapsible-well.component"
 import {appRoutes} from "./routes";
 import {Error404Component} from './errors/404.component'
 import {AuthService} from "./user/auth.service";
 
+// As a type use Toastr interface.
+declare let toastr:Toastr;
+
 @NgModule({
-    imports:[
+    imports: [
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes)
     ],
-    declarations:[
+    declarations: [
         EventsAppComponent,
         EventsListComponent,
         EventThumbnailComponent,
@@ -44,21 +47,26 @@ import {AuthService} from "./user/auth.service";
         CollapsibleWellComponent,
         DurationPipe
     ],
-    providers:[
+    providers: [
         EventService,
-        ToastrService,
+        {
+            // If you try to get by token TOASTR_TOKEN Angular will give toastr object
+            provide: TOASTR_TOKEN,
+            useValue: toastr
+        },
         EventListResolver,
         AuthService,
         EventRouteActivator,
         {
-            provide:'canDeactivateCreateEvent',
-            useValue:checkDirtyState
+            provide: 'canDeactivateCreateEvent',
+            useValue: checkDirtyState
         }
     ],
-    bootstrap:[EventsAppComponent]
+    bootstrap: [EventsAppComponent]
 })
-export class AppModule{}
+export class AppModule {
+}
 
-function checkDirtyState(){
+function checkDirtyState() {
     return false;
 }
