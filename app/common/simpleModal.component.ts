@@ -20,7 +20,7 @@ import {Component, Input} from '@angular/core';
         </div>
     `,
     styles: [`
-      .modal-body{height:250px; overflow-y:scroll;}
+      .modal-body{height:350px; overflow-y:scroll;}
     `]
 })
 
