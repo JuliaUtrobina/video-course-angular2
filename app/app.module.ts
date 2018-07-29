@@ -16,16 +16,23 @@ import {
     DurationPipe
 } from "./events/index"
 
+import {
+    JQ_TOKEN,
+    TOASTR_TOKEN,
+    Toastr,
+    CollapsibleWellComponent,
+    SimpleModalComponent
+} from  "./common/index";
+
 import {EventsAppComponent} from "./events-app.components";
 import {NavBarComponent} from  "./nav/navbar.component";
-import {TOASTR_TOKEN, Toastr} from "./common/toastr.service"
-import {CollapsibleWellComponent} from "./common/collapsible-well.component"
 import {appRoutes} from "./routes";
 import {Error404Component} from './errors/404.component'
 import {AuthService} from "./user/auth.service";
 
 // As a type use Toastr interface.
 declare let toastr:Toastr;
+declare let jQuery:Object;
 
 @NgModule({
     imports: [
@@ -45,6 +52,7 @@ declare let toastr:Toastr;
         SessionListComponent,
         Error404Component,
         CollapsibleWellComponent,
+        SimpleModalComponent,
         DurationPipe
     ],
     providers: [
@@ -53,6 +61,10 @@ declare let toastr:Toastr;
             // If you try to get by token TOASTR_TOKEN Angular will give toastr object
             provide: TOASTR_TOKEN,
             useValue: toastr
+        },
+        {
+            provide: JQ_TOKEN,
+            useValue: jQuery
         },
         EventListResolver,
         AuthService,
