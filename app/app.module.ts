@@ -21,7 +21,8 @@ import {
     TOASTR_TOKEN,
     Toastr,
     CollapsibleWellComponent,
-    SimpleModalComponent
+    SimpleModalComponent,
+    ModalTriggerDirective
 } from  "./common/index";
 
 import {EventsAppComponent} from "./events-app.components";
@@ -53,6 +54,7 @@ declare let jQuery:Object;
         Error404Component,
         CollapsibleWellComponent,
         SimpleModalComponent,
+        ModalTriggerDirective,
         DurationPipe
     ],
     providers: [
