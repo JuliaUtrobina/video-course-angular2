@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
 import {RouterModule} from '@angular/router'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import {HttpModule} from '@angular/http'
 
 import {
     EventsListComponent,
@@ -26,23 +27,24 @@ import {
     CollapsibleWellComponent,
     SimpleModalComponent,
     ModalTriggerDirective
-} from  "./common/index";
+} from "./common/index";
 
 import {EventsAppComponent} from "./events-app.components";
-import {NavBarComponent} from  "./nav/navbar.component";
+import {NavBarComponent} from "./nav/navbar.component";
 import {appRoutes} from "./routes";
 import {Error404Component} from './errors/404.component'
 import {AuthService} from "./user/auth.service";
 
 // As a type use Toastr interface.
-declare let toastr:Toastr;
-declare let jQuery:Object;
+declare let toastr: Toastr;
+declare let jQuery: Object;
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
+        HttpModule,
         RouterModule.forRoot(appRoutes)
     ],
     declarations: [
@@ -87,7 +89,7 @@ declare let jQuery:Object;
 export class AppModule {
 }
 
-export function checkDirtyState(component:CreateEventComponent) {
+export function checkDirtyState(component: CreateEventComponent) {
     if (component.isDirty)
         return window.confirm('You have not saved this event, do you really want to cancel?')
     return true

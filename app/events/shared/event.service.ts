@@ -1,21 +1,23 @@
 import {Injectable, EventEmitter} from "@angular/core";
-import {Subject,Observable} from 'rxjs/RX';
+import {Subject, Observable} from 'rxjs/RX';
 import {IEvent, ISession} from "./event.model";
+import {Http, Response} from "@angular/http";
 
 @Injectable()
 export class EventService {
-    getEvents():Observable<IEvent[]> {
-        let subject = new Subject<IEvent[]>();
-        setTimeout(()=> {
-            subject.next(EVENTS);
-            subject.complete();
-        }, 100);
 
-        return subject;
+    constructor(private http: Http) {
+
     }
 
-    getEvent(id:number):IEvent {
-        return EVENTS.find(event=>event.id === id);
+    getEvents(): Observable<IEvent[]> {
+        return this.http.get("/api/events").map((response: Response) => {
+            return <IEvent[]>response.json();
+        }).catch(this.handleError);
+    }
+
+    getEvent(id: number): IEvent {
+        return EVENTS.find(event => event.id === id);
     }
 
     saveEvent(event) {
@@ -26,21 +28,21 @@ export class EventService {
 
     updateEvent(event) {
         // Find passed event in array to replace
-        let index = EVENTS.findIndex(x=>x.id == event.id);
+        let index = EVENTS.findIndex(x => x.id == event.id);
         EVENTS[index] = event;
     }
 
-    searchSessions(searchTerm:string) {
+    searchSessions(searchTerm: string) {
         var term = searchTerm.toLocaleLowerCase();
-        var results:ISession[] = [];
+        var results: ISession[] = [];
 
-        EVENTS.forEach(event=> {
+        EVENTS.forEach(event => {
             // Find session which match the text
             var matchingSessions = event.sessions.filter(session =>
-            session.name.toLocaleLowerCase().indexOf(term) > -1);
+                session.name.toLocaleLowerCase().indexOf(term) > -1);
 
             // Set event Id to every found session
-            matchingSessions = matchingSessions.map((session:any)=> {
+            matchingSessions = matchingSessions.map((session: any) => {
                 session.eventId = event.id;
                 return session;
             })
@@ -49,14 +51,19 @@ export class EventService {
 
         // Return data asyn
         var emitter = new EventEmitter(true);
-        setTimeout(()=> {
+        setTimeout(() => {
             emitter.emit(results);
         }, 100);
 
         return emitter;
     }
+
+    private handleError(error: Response) {
+        return Observable.throw(error.statusText);
+    }
 }
-const EVENTS:IEvent[] = [
+
+const EVENTS: IEvent[] = [
     {
         id: 1,
         name: 'Angular Connect',
