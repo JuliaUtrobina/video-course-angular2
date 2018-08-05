@@ -60,7 +60,8 @@
     </div>
 
     <!--Sessions list component-->
-    <session-list *ngIf="!addMode" [filterBy]="filterBy" [sortBy]="sortBy" [sessions]="event?.sessions"></session-list>
+    <session-list *ngIf="!addMode" [eventId]="event?.id" [filterBy]="filterBy" [sortBy]="sortBy"
+                  [sessions]="event?.sessions"></session-list>
     <!--(saveNewSession) - emitted event-->
     <create-session *ngIf="addMode" (saveNewSession)="saveNewSession($event)"
                     (cancelAddSession)="cancelAddSession()"></create-session>
