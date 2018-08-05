@@ -33,29 +33,9 @@ export class EventService {
     }
 
     searchSessions(searchTerm: string) {
-        var term = searchTerm.toLocaleLowerCase();
-        var results: ISession[] = [];
-
-        EVENTS.forEach(event => {
-            // Find session which match the text
-            var matchingSessions = event.sessions.filter(session =>
-                session.name.toLocaleLowerCase().indexOf(term) > -1);
-
-            // Set event Id to every found session
-            matchingSessions = matchingSessions.map((session: any) => {
-                session.eventId = event.id;
-                return session;
-            })
-            results = results.concat(matchingSessions);
-        })
-
-        // Return data asyn
-        var emitter = new EventEmitter(true);
-        setTimeout(() => {
-            emitter.emit(results);
-        }, 100);
-
-        return emitter;
+        return this.http.get("/api/sessions/search?search=" + searchTerm).map((response: Response) => {
+            return response.json();
+        }).catch(this.handleError);
     }
 
     private handleError(error: Response) {
