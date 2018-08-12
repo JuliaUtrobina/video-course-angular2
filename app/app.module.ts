@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core'
-import {BrowserModule} from '@angular/platform-browser'
-import {RouterModule} from '@angular/router'
-import {FormsModule, ReactiveFormsModule} from '@angular/forms'
-import {HttpModule} from '@angular/http'
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {RouterModule} from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
 import {
     EventsListComponent,
@@ -18,7 +18,7 @@ import {
     UpvoteComponent,
     VoterService,
     LocationValidator
-} from "./events/index"
+} from './events/index';
 
 import {
     JQ_TOKEN,
@@ -27,13 +27,13 @@ import {
     CollapsibleWellComponent,
     SimpleModalComponent,
     ModalTriggerDirective
-} from "./common/index";
+} from './common/index';
 
-import {EventsAppComponent} from "./events-app.components";
-import {NavBarComponent} from "./nav/navbar.component";
-import {appRoutes} from "./routes";
-import {Error404Component} from './errors/404.component'
-import {AuthService} from "./user/auth.service";
+import {EventsAppComponent} from './events-app.components';
+import {NavBarComponent} from './nav/navbar.component';
+import {appRoutes} from './routes';
+import {Error404Component} from './errors/404.component';
+import {AuthService} from './user/auth.service';
 
 // As a type use Toastr interface.
 declare let toastr: Toastr;
@@ -91,6 +91,6 @@ export class AppModule {
 
 export function checkDirtyState(component: CreateEventComponent) {
     if (component.isDirty)
-        return window.confirm('You have not saved this event, do you really want to cancel?')
-    return true
+        return window.confirm('You have not saved this event, do you really want to cancel?');
+    return true;
 }

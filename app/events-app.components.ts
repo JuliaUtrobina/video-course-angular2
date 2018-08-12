@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AuthService} from "./user/auth.service";
+import {AuthService} from './user/auth.service';
 
 @Component({
     selector:'events-app',
@@ -8,10 +8,10 @@ import {AuthService} from "./user/auth.service";
         <router-outlet></router-outlet>
     `
 })
-export class EventsAppComponent{
+export class EventsAppComponent {
     constructor(private auth: AuthService) {}
 
-    ngOnInit(){
+    ngOnInit() {
         this.auth.checkAuthenticationStatus();
     }
 }

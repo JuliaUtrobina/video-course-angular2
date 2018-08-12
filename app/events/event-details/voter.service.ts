@@ -1,7 +1,7 @@
-import {Injectable} from "@angular/core";
-import {IEvent, ISession} from "../shared/event.model";
-import {Http, Response, Headers, RequestOptions} from "@angular/http";
-import {Observable} from "rxjs/Rx";
+import {Injectable} from '@angular/core';
+import {IEvent, ISession} from '../shared/event.model';
+import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 
@@ -13,16 +13,16 @@ export class VoterService {
     deleteVoter(eventId: number, session: ISession, voterName: string) {
         session.voters = session.voters.filter(voter => voter !== voterName);
 
-        let ulr = `/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`;
+        const ulr = `/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`;
         return this.http.delete(ulr).catch(this.handleError).subscribe();
     }
 
     addVoter(eventId: number, session: ISession, voterName: string) {
         session.voters.push(voterName);
 
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-        let ulr = `/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`;
+        const headers = new Headers({'Content-Type': 'application/json'});
+        const options = new RequestOptions({headers: headers});
+        const ulr = `/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`;
         return this.http.post(ulr, JSON.stringify({}), options).catch(this.handleError).subscribe();
     }
 

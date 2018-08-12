@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {EventService} from "../shared/event.service";
-import {ActivatedRoute, Params} from "@angular/router";
-import {IEvent, ISession} from "../shared/index";
+import {EventService} from '../shared/event.service';
+import {ActivatedRoute, Params} from '@angular/router';
+import {IEvent, ISession} from '../shared/index';
 
 @Component({
     templateUrl: '/app/events/event-details/event-details.component.html',
@@ -23,8 +23,8 @@ import {IEvent, ISession} from "../shared/index";
 export class EventDetailsComponent {
     event: IEvent;
     addMode: boolean;
-    filterBy: string = 'all';
-    sortBy: string = 'votes';
+    filterBy = 'all';
+    sortBy = 'votes';
 
     constructor(private eventService: EventService, private route: ActivatedRoute) {
 

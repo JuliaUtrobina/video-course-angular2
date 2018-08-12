@@ -1,4 +1,4 @@
-import {OpaqueToken} from "@angular/core";
+import {OpaqueToken} from '@angular/core';
 // OpaqueToken - toked used to find class
 
 // Create js object for toast

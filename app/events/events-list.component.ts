@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {EventService} from "./shared/event.service";
-import {OnInit} from "../../node_modules/@angular/core/src/metadata/lifecycle_hooks";
+import {EventService} from './shared/event.service';
+import {OnInit} from '../../node_modules/@angular/core/src/metadata/lifecycle_hooks';
 import {ActivatedRoute} from '@angular/router';
-import {IEvent} from "./shared/index";
+import {IEvent} from './shared/index';
 
 @Component({
     template:`
@@ -17,15 +17,15 @@ import {IEvent} from "./shared/index";
     </div>
     `
 })
-export class EventsListComponent implements OnInit{
+export class EventsListComponent implements OnInit {
     events:IEvent[];
 
 
-    constructor (private eventService:EventService, private route:ActivatedRoute){
+    constructor (private eventService:EventService, private route:ActivatedRoute) {
 
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.events=this.route.snapshot.data['events'];
     }
 }
